@@ -1,4 +1,5 @@
 import { Component } from "react";
+import axios from "axios";
 import Game from "./Game";
 
 class GameList extends Component {
@@ -8,6 +9,17 @@ class GameList extends Component {
       games: [],
     };
   }
+
+  fetchGames = () => {
+    axios
+      .get("https://apis.wilders.dev/wild-games/games/")
+      .then((response) => this.setState({ games: response.data }));
+  };
+
+  componentDidMount() {
+    this.fetchGames();
+  }
+
   render() {
     const { games } = this.state;
     return (
