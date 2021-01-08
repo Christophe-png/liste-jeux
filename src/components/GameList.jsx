@@ -1,16 +1,23 @@
+import { Component } from "react";
 import Game from "./Game";
 
-const GameList = (props) => (
-  <section className="GameList">
-    {props.games.map((singleGame) => (
-      <Game
-        key={singleGame.id}
-        name={singleGame.name}
-        background_image={singleGame.background_image}
-        rating={singleGame.rating}
-      />
-    ))}
-  </section>
-);
+class GameList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      games: [],
+    };
+  }
+  render() {
+    const { games } = this.state;
+    return (
+      <section className="GameList">
+        {games.map((singleGame) => (
+          <Game key={singleGame.id} game={singleGame} />
+        ))}
+      </section>
+    );
+  }
+}
 
 export default GameList;
