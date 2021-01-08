@@ -1,3 +1,13 @@
+.Game {
+  width: 32%;
+}
+
 .Game img {
-  max-width: 10%;
+  max-width: 100%;
+}
+
+.Game-toggleFavorite {
+  padding: 0;
+  background: transparent;
+  border: none;
 }

@@ -6,6 +6,9 @@ const Game = ({ game }) => (
     <h3>{game.name}</h3>
     <img src={game.background_image} alt="Game Title" />
     <p>Rating: {game.rating}</p>
+    <button type="button" className="Game-toggleFavorite">
+      ❤
+    </button>
   </article>
 );
 

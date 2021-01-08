@@ -1,6 +1,7 @@
 import { Component } from "react";
 import axios from "axios";
 import Game from "./Game";
+import "./GameList.css";
 
 class GameList extends Component {
   constructor(props) {
