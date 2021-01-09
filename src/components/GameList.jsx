@@ -8,6 +8,7 @@ class GameList extends Component {
     super(props);
     this.state = {
       games: [],
+      filterBest: false,
     };
   }
 
@@ -21,13 +22,32 @@ class GameList extends Component {
     this.fetchGames();
   }
 
+  toggleFilterBest = () => {
+    const { filterBest } = this.state;
+    this.setState({
+      filterBest: !filterBest,
+    });
+  };
+
   render() {
-    const { games } = this.state;
+    const { games, filterBest } = this.state;
+    let filteredGames = games;
+    if (filterBest) {
+      filteredGames = filteredGames.filter(
+        (singleGame) => singleGame.rating >= 4.5
+      );
+    }
+
     return (
       <section className="GameList">
-        {games.map((singleGame) => (
-          <Game key={singleGame.id} game={singleGame} />
-        ))}
+        <button type="button" onClick={this.toggleFilterBest}>
+          {filterBest ? "All games" : "Best games"}
+        </button>
+        <div className="GameList-list">
+          {games.map((singleGame) => (
+            <Game key={singleGame.id} game={singleGame} />
+          ))}
+        </div>
       </section>
     );
   }
