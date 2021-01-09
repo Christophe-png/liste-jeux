@@ -29,22 +29,23 @@ class GameList extends Component {
     });
   };
 
-  render() {
+  getFilteredGames = () => {
     const { games, filterBest } = this.state;
-    let filteredGames = games;
-    if (filterBest) {
-      filteredGames = filteredGames.filter(
-        (singleGame) => singleGame.rating >= 4.5
-      );
-    }
+    return filterBest
+      ? games.filter((singleGame) => singleGame.rating >= 4.5)
+      : games;
+  };
 
+  render() {
+    const { filterBest } = this.state;
+    const filteredGames = this.getFilteredGames();
     return (
       <section className="GameList">
         <button type="button" onClick={this.toggleFilterBest}>
           {filterBest ? "All games" : "Best games"}
         </button>
         <div className="GameList-list">
-          {games.map((singleGame) => (
+          {filteredGames.map((singleGame) => (
             <Game key={singleGame.id} game={singleGame} />
           ))}
         </div>
